@@ -37,7 +37,7 @@
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/*.json
+.vs/*
 !.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
