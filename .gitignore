@@ -77,4 +77,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# BOJ - Java
+BOJ/Java/.idea/*
+BOJ/Java/.vscode/*
+BOJ/Java/out/*
+BOJ/Java/README.md
+BOJ/Java/BOJ.iml
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudiocode
