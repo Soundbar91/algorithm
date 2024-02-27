@@ -1,5 +1,5 @@
-# Algorithm
-알고리즘 공부
+# 알고리즘 공부
+Start : 2023.12.18
 
 ## :page_with_curl: 목차
 ### 1. BOJ
