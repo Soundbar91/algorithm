@@ -1,13 +1,11 @@
 package Silver.II;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2805 {
     static int N;
     static long M;
-    static long result;
     static long[] tree;
 
     public static void main(String[] args) throws IOException {
@@ -20,37 +18,29 @@ public class BOJ_2805 {
         tree = new long[N];
 
         st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) tree[i] = Integer.parseInt(st.nextToken());
+        long min = 0;
+        long max = 0;
 
-        Arrays.sort(tree);
+        for (int i = 0; i < N; i++) {
+            tree[i] = Integer.parseInt(st.nextToken());
+            if (max < tree[i]) max = tree[i];
+        }
 
-        binary_search(0, tree[N - 1]);
+        while (min < max) {
+            long mid = (min + max) / 2;
+            long sum = 0;
 
-        bw.write(String.valueOf(result));
+            for (long i : tree) {
+                if (i - mid > 0) sum += (i - mid);
+            }
+
+            if (sum < M) max = mid;
+            else min = mid + 1;
+        }
+
+        bw.write(String.valueOf(min - 1));
         bw.flush();
         bw.close();
         br.close();
-    }
-
-    public static void binary_search(long lo, long hi) {
-        while (lo + 1 < hi) {
-            long mid = (lo + hi) / 2;
-            if (fn(mid)) lo = mid;
-            else hi = mid;
-        }
-    }
-
-    public static boolean fn(long param) {
-        long sum = 0;
-
-        for (int i = 0; i < N; i++) {
-            if (tree[i] - param >= 0) sum += (tree[i]) - param;
-        }
-
-        if (sum >= M) {
-            result = param;
-            return true;
-        }
-        else return false;
     }
 }
