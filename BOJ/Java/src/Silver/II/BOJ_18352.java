@@ -12,6 +12,7 @@ public class BOJ_18352 {
     static int K;
     static int X;
     static int[] dist;
+    static boolean[] visited;
     static ArrayList<ArrayList<Node>> map = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
@@ -24,6 +25,7 @@ public class BOJ_18352 {
         X = Integer.parseInt(st.nextToken());
 
         dist = new int[N + 1];
+        visited = new boolean[N + 1];
 
         for (int i = 0; i <= N; i++) map.add(new ArrayList<>());
 
@@ -45,13 +47,16 @@ public class BOJ_18352 {
         PriorityQueue<Node> queue = new PriorityQueue<>();
         queue.add(new Node(X, 0));
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Node node = queue.poll();
 
-            for (Node nextNode: map.get(node.index)) {
-                if (dist[nextNode.index] > nextNode.cost + dist[node.index]) {
-                    dist[nextNode.index] = dist[node.index] + nextNode.cost;
-                    queue.add(new Node(nextNode.index, dist[nextNode.index]));
+            visited[node.node] = true;
+
+            for (Node nextNode : map.get(node.node)) {
+                if (visited[nextNode.node]) continue;
+                if (dist[nextNode.node] > dist[node.node] + nextNode.weight) {
+                    dist[nextNode.node] = dist[node.node] + nextNode.weight;
+                    queue.add(new Node(nextNode.node, dist[nextNode.node]));
                 }
             }
         }
@@ -71,14 +76,18 @@ public class BOJ_18352 {
         else for (int city : result) System.out.println(city);
     }
 
-    static class Node implements Comparable<Node> {
-        int index, cost;
-        Node (int index, int dist) {
-            this.index = index;
-            this.cost = dist;
+    public static class Node implements Comparable<Node> {
+        int node;
+        int weight;
+
+        public Node(int node, int weight) {
+            this.node = node;
+            this.weight = weight;
         }
-        @Override public int compareTo(Node n) {
-            return cost - n.cost;
+
+        @Override
+        public int compareTo(Node n) {
+            return weight - n.weight;
         }
     }
 }
