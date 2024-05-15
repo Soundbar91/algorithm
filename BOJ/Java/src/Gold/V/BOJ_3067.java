@@ -20,6 +20,7 @@ public class BOJ_3067 {
             N = Integer.parseInt(br.readLine());
 
             money = new int[N];
+
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int i = 0; i < N; i++) money[i] = Integer.parseInt(st.nextToken());
 
