@@ -1,6 +1,7 @@
 package Silver.I;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_22869 {
@@ -14,10 +15,8 @@ public class BOJ_22869 {
 
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-        stone = new int[N];
-
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) stone[i] = Integer.parseInt(st.nextToken());
+        stone = Arrays.stream(br.readLine().split(" "))
+                .mapToInt(Integer::parseInt).toArray();
 
         System.out.print(solve() ? "YES" : "NO");
         br.close();
